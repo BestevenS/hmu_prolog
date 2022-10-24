@@ -1,0 +1,23 @@
+page 599
+ask 4
+
+Να αποδείξω οτι: 
+    1. ('p -> 'q) v q. είναι ταυτολογία
+    2. (p -> q) ^ '(p -> q). είναι αντίφαση
+
+1.
+                    F
+    p   q   'p  'q  'p->'q  Fvq
+
+    T   T    F   F   T      T
+    T   F    F   T   T      T
+    F   T    T   F   F      T
+    F   F    T   T   T      T
+
+2.
+            Y       'Y
+    p   q   p->q  '(p->q)  Y^'Y
+    T   T   T      F       F
+    T   F   F      T       F
+    F   T   T      F       F
+    F   F   T      F       F
