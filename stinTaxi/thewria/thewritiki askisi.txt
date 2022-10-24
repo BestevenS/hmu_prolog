@@ -17,6 +17,7 @@ ask 4
 2.
             Y       'Y
     p   q   p->q  '(p->q)  Y^'Y
+    
     T   T   T      F       F
     T   F   F      T       F
     F   T   T      F       F
