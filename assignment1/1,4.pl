@@ -16,14 +16,42 @@ if pateras(X,Y) and pateras(X,Z) and filo_thiliko(Y) and \+(Y==Z) then adelfi(Y,
 if mitera((X,Y) and mitera (X,Z) and filo_thiliko(Y) and \+(Y==Z) then adelfi(Y,Z);*/
 
 
-ginaika(X,Y):-antras(Y,X).
-paidi(Y,X):-pateras(X,Y).
-mitera(Z,Y):-pateras(X,Y),ginaika(Z,X).
-paidi(Y,X):-mitera(X,Y).
-adelfos(Y,Z):-pateras(X,Y),pateras(X,Z),filo_aren(Y),\+(Y==Z).
-adelfos(Y,Z):-mitera(X,Y),mitera(X,Z),filo_aren(Y),\+(Y==Z).
-adelfi(Y,Z):-pateras(X,Y),pateras(X,Z),filo_thiliko(Y),\+(Y==Z).
-adelfi(Y,Z):-mitera(X,Z),mitera(X,Y),filo_thiliko(Y),\+(Y==Z).
+ginaika(X,Y):-
+    antras(Y,X).
+
+paidi(Y,X):-
+    pateras(X,Y).
+
+mitera(Z,Y):-
+    pateras(X,Y),
+    ginaika(Z,X).
+
+paidi(Y,X):-
+    mitera(X,Y).
+
+adelfos(Y,Z):-
+    pateras(X,Y),
+    pateras(X,Z),
+    filo_aren(Y),
+    \+(Y==Z).
+
+adelfos(Y,Z):-
+    mitera(X,Y),
+    mitera(X,Z),
+    filo_aren(Y),
+    \+(Y==Z).
+
+adelfi(Y,Z):-
+    pateras(X,Y),
+    pateras(X,Z),
+    filo_thiliko(Y),
+    \+(Y==Z).
+
+adelfi(Y,Z):-
+    mitera(X,Z),
+    mitera(X,Y),
+    filo_thiliko(Y),
+    \+(Y==Z).
 
 
 %STOXOI
