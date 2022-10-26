@@ -1,0 +1,44 @@
+if koresmos >= 20 then
+Answer = "Κανένα προβλημα ανοξιας".
+
+if koresmos < 20 and uparxi_no3 == nai then
+Answer = "Σοβαρο προβλημα ανοξιας".
+
+if koresmos < 20 and uparxi_no3 == oxi then
+Answer = "Πολυ σοβαρο προβλημα ανοξιας".
+
+if koresmos == tipota and uparxi_kokkinwn == arketa
+then Answer = "Μετρια ανοξια".
+
+if koresmos == tipota and uparxi_kokkinwn == liga
+then Answer = "Πολυ σοβαρο προβλημα ανοξιας".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and uparxi_izimatwn == anoikta and tupos_upostrwmatos == kanoniko
+and asxima_murizei_nero == nai 
+then Answer = "Μετρια ανοξια".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and uparxi_izimatwn == anoikta and tupos_upostrwmatos == kanoniko
+and asxima_murizei_nero == oxi 
+then Answer = "Κανενα προβλημα".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and uparxi_izimatwn == anoikta and (tupos_upostrwmatos == messaio 
+or tupos_upostrwmatos == megalo)
+then Answer = "Κανενα προβλημα anoxias".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and (uparxi_izimatwn == mayra or uparxi_izimatwn == skoura) and 
+uparxi h2s == oxi and uparxi_ch4 == oxi
+then Answer = "Σοβαρο προβλημα anoxias".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and (uparxi_izimatwn == mayra or uparxi_izimatwn == skoura) and 
+uparxi h2s == oxi and uparxi_ch4 == nai
+then Answer = "Πολυ σοβαρο προβλημα anoxias".
+
+if koresmos == tipota and uparxi_kokkinwn == oxi 
+and (uparxi_izimatwn == mayra or uparxi_izimatwn == skoura) and 
+uparxi h2s == nai
+then Answer = "Πολυ σοβαρο προβλημα anoxias".
