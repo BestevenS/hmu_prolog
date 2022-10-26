@@ -1,0 +1,1 @@
+:- dynamic rule/3.
