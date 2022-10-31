@@ -1,3 +1,11 @@
+/*
+
+consult('length.pl').
+
+len([a, g, F, 2, 1], X).
+
+*/
+
 len(L, N):-
     len1(L, 0, N).
 
