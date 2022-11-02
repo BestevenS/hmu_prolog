@@ -17,11 +17,14 @@ deleteRule:-
     write('You pressed 1'),nl,
     write('Enter rule to delete: '),nl,
     read(RuleId),
+    
+    % retractall is the delete function
     retractall(rule(RuleId,_,_)),
     write('Rule deleted'),nl,
     menu.
 
 addNewRule:-
+    write('You pressed 2'),nl,
     write('Give the rule Id:'),
     read(NewRuleId),
     shareFunc(NewRuleId).
@@ -30,11 +33,15 @@ modifyRule:-
     write('You pressed 3'),nl,
     write('Enter rule to modify: '),nl,
     read(RuleId),
+
+    % retractall is the delete function
+    % deleting the rule with the given id
+    % and then adding a new rule with the same id
+    % it looks like a modification
     retractall(rule(RuleId,_,_)),
     shareFunc(RuleId).
 
 shareFunc(NewRuleId):-
-    write('You pressed 2'),nl,
     nl, write('Add new rule'), nl,
     write('Give the data of the problem:'),
     read(Data),
@@ -42,15 +49,24 @@ shareFunc(NewRuleId):-
     read(RuleCondition),
     write('Give the rule results:'),
     read(RuleAnswer),
+
+    % assert is adding a new rule in memory
     assertz(
-        (rule(NewRuleId, Data, Answer):- RuleCondition,Answer=RuleAnswer)
+        (
+            rule(NewRuleId, Data, Answer):- RuleCondition,Answer=RuleAnswer
+        )
     ),
     menu.
 
 exit:-
     write('You pressed 4'),nl,
-    % Να αποθηκεύω τους κανόνες σε ένα αρχείο
+
+    % is opening a file with name myFile.txt
     tell('myFile.txt'),
-    listing(rule/3),    
+
+    % is writing all the rules from the memory to the file
+    listing(rule/3),
+
+    % is saving & closing the file
     told,
     write('Exiting...'),nl.
