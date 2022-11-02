@@ -1,0 +1,32 @@
+:- meta_predicate'$syspreds':rule(:,-,?).
+
+'$syspreds':rule(Head, Rule, Ref) :-
+    '$rule'(Head, Rule0, Ref),
+    conditional_rule(Rule0, Rule1),
+    Rule=Rule1.
+
+%   NOTE: system definition has been overruled for rule/3
+:- dynamic rule/3.
+
+rule(rid1, values(yes, [BOD, Oxidability, DOC_TOC, [Cloudy, Colour]]), Answer) :-
+    number(BOD),
+    BOD=<7,
+    Answer='ΒΑΟ(BOD): Μέτριο πρόβλημα με ΜΟΥ.'.
+rule(rid3, values(yes, [BOD, Oxidability, DOC_TOC, [Cloudy, Colour]]), Answer) :-
+    number(BOD),
+    BOD>15,
+    Answer='ΒΑΟ(BOD): Πολύ Έντονο πρόβλημα ΜΟΥ.'.
+rule(rid4, values(yes, [BOD, Oxidability, DOC_TOC, [Cloudy, Colour]]), Answer) :-
+    number(Oxidability),
+    Oxidability=<3,
+    Answer='Οξείδωση (Oxidability): Έντονο πρόβλημα ΜΟΥ.'.
+rule(rid7, values(yes, [BOD, Oxidability, DOC_TOC, [Cloudy, Colour]]), Answer) :-
+    number(Oxidability),
+    Oxidability>3,
+    Oxidability=<7,
+    Answer='Οξείδωση (Oxidability): Μέτριο πρόβλημα με ΜΟΥ.'.
+rule(rid2, values(yes, [K, L, M, [N, O]]), A) :-
+    number(K),
+    K=<5,
+    A='BAO(BOD):Δεν υπάρχει πρόβλημα με ΜΟΥ'.
+
