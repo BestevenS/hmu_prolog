@@ -64,7 +64,6 @@ addNewRule:-
     shareFunc(NewRuleId).
 
 modifyRule:-
-    write('You pressed 3'),nl,
     write('Enter rule to modify: '),nl,
     read(RuleId),
 
