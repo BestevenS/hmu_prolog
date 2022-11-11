@@ -43,7 +43,7 @@ update_kb:-
     write('1. Delete rule'),nl,
     write('2. Add new rule'),nl,
     write('3. Modify rule'),nl,
-    write('4. Exit'),nl,
+    write('4. Save & Exit'),nl,
     write('Enter your choice: '),
     % Read user input
     read(Option),
@@ -78,7 +78,7 @@ deleteRule:-
     write('Rule deleted'),nl,
 
     % displaying the main menu
-    menu.
+    update_kb.
 
 addNewRule:-
     write('Enter ruleId to add new rule: '),
@@ -115,18 +115,18 @@ shareFunc(NewRuleId):-
         )
     ),
     % Calling the menu again
-    menu.
+    update_kb.
 
 save:-
     % is opening a file with name myFile.txt
-    tell('KB1.pl'),
+    tell('KB.pl'),
 
     % is writing all the rules from the memory to the file
     listing(rule1/3),
 
     % is saving & closing the file
     told,
-    write('Exiting the menu'), nl, menu.
+    write('Exiting & saving the second menu'), nl, menu.
 
 
 % from assignment1
