@@ -12,7 +12,7 @@ omp_Values(Koresmos, Values):-
         write('Yparxoun times kokkinwn oligochates?'),nl,
         read(YesNo_KO),
         uparxi_kokkinwn_oligochates(YesNo_KO, Timi_KO),
-        
+
         write('Yparxoun Izhmata?'),nl,
         read(YesNo_Iz),
         uparxi_izimatwn(YesNo_Iz, Timi_Iz),
