@@ -4,7 +4,7 @@ problem_diagnosis(Results):-
     write('Dwse timi koresmou (>=20, <20, no)'),nl,
     read(Koresmos),
     omp_Values(Koresmos, Values),
-    bagof(Answer, rule(values(Koresmos, Values), Answer),Results).
+    bagof(Answer, rule(_, values(Koresmos, Values), Answer),Results).
 
 omp_Values(Koresmos, Values):-
     (   
@@ -33,6 +33,7 @@ omp_Values(Koresmos, Values):-
         read(YesNo_Murodias),
         uparxi_myrodias(YesNo_Murodias, Timi_Murodias);
         number(Koresmos),Koresmos < 20,
+
         write('Yparxoun times NO3?'),nl,
         read(YesNo_NO3),
         uparxi_NO3(YesNo_NO3, Timi_NO3);    
