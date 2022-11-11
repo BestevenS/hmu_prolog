@@ -1,33 +1,33 @@
-rule(values(rid1, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid1, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 number(Koresmos),Koresmos >= 20,!,
 Answer = 'Kanena provlima anoxias'.
 
-rule(values(rid2, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid2, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 number(Koresmos),Koresmos < 20,
 Yparxi_NO3 == yes,!,
 Answer = 'Sovaro provlima anoxias'.
 
-rule(values(rid3, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid3, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 number(Koresmos),Koresmos < 20,
 Yparxi_NO3 == no,!,
 Answer ='Poli sovaro provlima anoxias'.
 
-rule(values(rid4, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid4, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == Arketa,!,
 Answer = 'Metria anoxias'.
 
-rule(values(rid5, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid5, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,write('yes'),
 Kokkina_oligochate == liga,!,
 Answer = 'Poli sovaro provlima anoxias'.
 
-rule(values(rid6, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid6, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
@@ -35,7 +35,7 @@ Kokkina_oligochate == no,
 Yparxi_H2S == yes,!,
 Answer = 'Poli sovaro provlima anoxias'.
 
-rule(values(rid7, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid7, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
@@ -44,7 +44,7 @@ Yparxi_H2S == no,
 Yparxi_CH4 == yes,!,
 Answer = 'Poli savro provlima anoxias'.
 
-rule(values(rid8, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid8, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
@@ -53,7 +53,7 @@ Yparxi_H2S == no,
 Yparxi_CH4 == no,!,
 Answer = 'Sovaro provlima anoxias'.
 
-rule(values(rid9, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid9, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
@@ -62,7 +62,7 @@ Yparxi_Izhmatwn == anoixta,
 Answer = 'Kanena provlima anoxias'.
 
 
-rule(values(rid10, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid10, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
@@ -72,7 +72,7 @@ Murodia_Nerou == no,!,
 Answer = 'Kanena provlima anoxias'.
 
 
-rule(values(rid11, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
+rule(rid11, values(Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
 Koresmos == no,
 Kokkina_oligochate == no,
