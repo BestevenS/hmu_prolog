@@ -24,7 +24,7 @@ menu:-
         Choice = 2 -> update_kb;
 
         % Create myFile.txt -> (content) new Knowledge and exiting the program
-        Choice = 3 -> exit;
+        Choice = 3 -> exit_program;
 
         % if the user input is not valid then show the menu again
         wrongChoice
@@ -60,8 +60,11 @@ update_kb:-
         Option =:= 3 -> modifyRule;
 
         % Exit
-        Option =:= 4 -> exit
+        Option =:= 4 -> save
     ),nl.
+
+exit_program:-
+    write('Exiting the program...'),nl.
 
 deleteRule:-
     write('Enter ruleId to delete the rule: '),nl,
@@ -114,7 +117,7 @@ shareFunc(NewRuleId):-
     % Calling the menu again
     menu.
 
-exit:-
+save:-
     % is opening a file with name myFile.txt
     tell('KB1.pl'),
 
@@ -123,7 +126,7 @@ exit:-
 
     % is saving & closing the file
     told,
-    write('Exiting...'),nl.
+    write('Exiting the menu'), nl, menu.
 
 
 % from assignment1

@@ -1,4 +1,4 @@
-:- dynamic rule1/3.
+
 
 rule1(values(rid1, Koresmos, [Yparxi_NO3, Kokkina_oligochate, Yparxi_Izhmatwn, 
 Yparxi_H2S, Tupos_upostromatos, Yparxi_CH4, Murodia_Nerou]), Answer):-
