@@ -11,47 +11,55 @@ calc(Request):-
     http_read_data(Request, Data, []),
     % ορισμός tags ( '<p><h1>') που θα χρησιμοποιηθούν για τη μορφοποίηση
     % των αποτελεσμάτων
-    format('<p><h1>', []),
+    format('<sp><h1>', []),
 
-    results(Data.a, Data.b, Data.c, Ans),
+    atom_number(Data.a, A),
+    atom_number(Data.b, B),
+    atom_number(Data.c, C),
 
+    results(A, B, C, Ans),
+    % κλήση κατηγορήματος με τα δεδομένα των δύο πεδίων που έδωσε ο χρήστης
+    % sayHello(A, B, C).
     ansWrite(Ans).
 
-    % κλήση κατηγορήματος με τα δεδομένα των δύο πεδίων που έδωσε ο χρήστης
-    % sayHello(Data.a, Data.b, Data.c).
 
+    % Εκτύπωση των δεδομένων των δύο πεδίων στην ιστοσελίδα
+    % sayHello(A, B, C):-
+    %     write(A), write(B), write(C).
 
 
 ansWrite([]).
     
 ansWrite([H|T]):-
     write(H),
+    write('  '),
     ansWrite(T).
 
-% Εκτύπωση των δεδομένων των δύο πεδίων στην ιστοσελίδα
-% sayHello(A, B, C):-
-%     write(A), write(B), write(C).
+% ansWrite(Ans):-
+%     write(Ans).
+
+
 
 results(A, B, C, Ans):-
     (
         % 1.
-        number_string(A, A), A =:= 0,
+        A =:= 0,
         B =:= 0,
         % Απο την εκφώνηση ξέρω ότι το C δεν με νοιάζει
-        Ans = 'Το τριώνυμο είναι εκφυλισμένο!', !
+        Ans = 'To triwnumo einai ekfulismeno!', !
     );
     (
         % 2.
         A =:= 0,
         B =\= 0,
-        Ans = -C/B, !
+        Ans is -C/B, !
     );
     (
         % 3.
         A =\= 0,
         C =:= 0,
-        append(-B/A, Ans),
-        append(0, Ans), !
+        X1 is -B/A,
+        Ans = [X1, '0'], !
     );
     (
         % 4.
@@ -61,17 +69,13 @@ results(A, B, C, Ans):-
         C =\= 0,
         (
             % a
-            B ** 2 - 4 * A * C >= 0,    
-            append(
-                (-B + sqrt(B ** 2 - 4 * A * C)) / 2 * A, Ans
-            ),
-            append(
-                (-B - sqrt(B ** 2 - 4 * A * C)) / 2 * A, Ans
-            ), !
+            B ** 2 - 4 * A * C >= 0,
+            X1 is -B + sqrt(B ** 2 - 4 * A * C) / 2 * A,
+            X2 is -B - sqrt(B ** 2 - 4 * A * C) / 2 * A,
+            Ans = [X1, X2], !
         );
         (
             % b
-            Ans = 'Οι ρίζες είναι μιγαδικοί αριθμοί!', !
+            Ans = 'Oi rizes einai migadikoi arithmoi!', !
         )
     ).
-
