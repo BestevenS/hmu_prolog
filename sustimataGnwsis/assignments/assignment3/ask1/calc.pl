@@ -1,32 +1,17 @@
 calc(Request):-
-    % Δημιουργία μιας νέας ιστοσελίδας (αποτελέσματα) με το
-    % reply_html_page (:Head, :Body)
     reply_html_page(
-        title('values'), % (:Head -To head της ιστοσελίδας
-    []), % :Body - To body της ιστοσελίδας κενό
-    % έλεγχος αν έχει πραγματοποιηθεί η μέθοδος POST
+        title('values'), 
+    []),
     member(method(post), Request), !,
-    % Το κατηγόρημα http_read_data/3 διαβάζει τα δεδομένα από μια HTTP
-    % σύνδεση. Στη δομή Data καταχωρεί τα δεδομένα από την http σύνδεση
     http_read_data(Request, Data, []),
-    % ορισμός tags ( '<p><h1>') που θα χρησιμοποιηθούν για τη μορφοποίηση
-    % των αποτελεσμάτων
-    format('<sp><h1>', []),
+    % format('<p><h1>', []),
 
     atom_number(Data.a, A),
     atom_number(Data.b, B),
     atom_number(Data.c, C),
 
     results(A, B, C, Ans),
-    % κλήση κατηγορήματος με τα δεδομένα των δύο πεδίων που έδωσε ο χρήστης
-    % sayHello(A, B, C).
     ansWrite(Ans).
-
-
-    % Εκτύπωση των δεδομένων των δύο πεδίων στην ιστοσελίδα
-    % sayHello(A, B, C):-
-    %     write(A), write(B), write(C).
-
 
 ansWrite([]).
     
@@ -35,9 +20,8 @@ ansWrite([H|T]):-
     write('  '),
     ansWrite(T).
 
-% ansWrite(Ans):-
-%     write(Ans).
-
+ansWrite(Ans):-
+    write(Ans).
 
 
 results(A, B, C, Ans):-
@@ -70,8 +54,8 @@ results(A, B, C, Ans):-
         (
             % a
             B ** 2 - 4 * A * C >= 0,
-            X1 is -B + sqrt(B ** 2 - 4 * A * C) / 2 * A,
-            X2 is -B - sqrt(B ** 2 - 4 * A * C) / 2 * A,
+            X1 is (-B + sqrt(B ** 2 - 4 * A * C) / 2 * A),
+            X2 is (-B - sqrt(B ** 2 - 4 * A * C) / 2 * A),
             Ans = [X1, X2], !
         );
         (
