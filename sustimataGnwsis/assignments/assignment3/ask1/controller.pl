@@ -1,3 +1,9 @@
+/*
+
+TP4916 Stefanos Chidiroglou
+
+*/
+
 % --- για ορισμό και ρύθμιση ενός βασικού HTTP διακομιστή (server)
 :- use_module(library(http/thread_httpd)).
 % --- για την αποστολή αιτήματος στο διακομιστή
