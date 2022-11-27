@@ -15,7 +15,7 @@ TP4916 Stefanos Chidiroglou
 % we need the next module from the HTTP client library for the predicate http_read_data
 :- use_module(library(http/http_client)).
 
-
+% consulting the files i need for ask1
 :- consult('web_form.pl').
 :- consult('calc.pl').
 

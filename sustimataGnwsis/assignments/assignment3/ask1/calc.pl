@@ -6,36 +6,49 @@ TP4916 Stefanos Chidiroglou
 
 calc(Request):-
     reply_html_page(
-        title('values'), 
+        title('Calcs'), 
     []),
     member(method(post), Request), !,
     http_read_data(Request, Data, []),
-    % format('<p><h1>', []),
+    % get the values from the form
 
+    % convert the values to numbers and store them in variables
     atom_number(Data.a, A),
     atom_number(Data.b, B),
     atom_number(Data.c, C),
 
-    results(A, B, C, Ans),
+    % using the numbers calculate the result
+    % and get the Answer of the result
+    result(A, B, C, Ans),
+
+    % output the Answer to the page
     ansWrite(Ans).
 
+% if have 2 roots 
+% then insert them to the Ans list
+
+% if have 1 root or the answer is a string 
+% then insert it to the Ans variable
+
+% if Ans is a list
 ansWrite([]).
-    
+
 ansWrite([H|T]):-
     write(H),
     write('  '),
     ansWrite(T).
 
+% if Ans is a variable
 ansWrite(Ans):-
     write(Ans).
 
 
-results(A, B, C, Ans):-
+result(A, B, C, Ans):-
     (
         % 1.
         A =:= 0,
         B =:= 0,
-        % Απο την εκφώνηση ξέρω ότι το C δεν με νοιάζει
+        % Απο την εκφώνηση ξέρω ότι η τιμή του C δεν με νοιάζει
         Ans = 'To triwnumo einai ekfulismeno!', !
     );
     (
@@ -54,7 +67,7 @@ results(A, B, C, Ans):-
     (
         % 4.
         % i, ii.
-        % Απο την εκφώνηση ξέρω ότι το B δεν με νοιάζει
+        % Απο την εκφώνηση ξέρω ότι η τιμή του B δεν με νοιάζει
         A =\= 0,
         C =\= 0,
         (

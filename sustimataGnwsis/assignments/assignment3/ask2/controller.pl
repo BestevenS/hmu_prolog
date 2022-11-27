@@ -4,12 +4,18 @@ TP4916 Stefanos Chidiroglou
 
 */
 
-:- use_module(library(http/thread_httpd)). 
+% --- για ορισμό και ρύθμιση ενός βασικού HTTP διακομιστή (server)
+:- use_module(library(http/thread_httpd)).
+% --- για την αποστολή αιτήματος στο διακομιστή
 :- use_module(library(http/http_dispatch)).
 :- use_module(library(http/http_error)).
-:- use_module(library(http/html_write)). 
+% για χειρισμό σφαλμάτων του server
+:- use_module(library(http/html_write)).
+% για τη δημιουργία html και πολλά άλλα.
+% we need the next module from the HTTP client library for the predicate http_read_data
 :- use_module(library(http/http_client)).
 
+% consulting the files i need for ask2
 :- consult('web_form.pl').
 :- consult('calc.pl').
 :- consult('stackActions.pl').
