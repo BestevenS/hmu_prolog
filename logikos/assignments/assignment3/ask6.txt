@@ -1,0 +1,61 @@
+---------------------------------------------------------------------
+?- likes(anna,X).
+	1	1 call:likes(anna,_0121)?
+	2	2 call:teaches(yannis,0_121)?
+	2	2 exit:teaches(yannis,algebra)?
+	3	2 call:algebra=geometry?
+	3	2 fail:algebra=geometry?
+	1	1 exit:likes(anna,algebra)?
+X=algebra? ; 
+	1	1 redo:likes(anna,algebra)?
+	2	2 redo:teaches(yannis,algebra)?	backtracking
+	2	2 exit:teaches(yannis,geometry)?
+	4	2 call:geometry=geometry?
+	4	2 exit:geometry=geometry?
+	2	2 redo:teaches(yannis,geometry)? backtracking 
+	2	2 exit:teaches(yannis,logic)?
+	5	2 call:logic=geometry?
+	5	2 fail:logic=geometry?
+	1	1 exit:likes(anna,logic)?
+X=logic? ;
+	1	1 redo:likes(anna,logic)? backtrack
+	1	1 exit:likes(anna,physics)?
+X=physics? ;
+no
+
+----------------------------------------------------------------------
+?- likes(yannis,X).
+	1	1 call:likes(yannis,_1211)?
+	2	2 call:course(_1211)?
+	2	2 exit:course(physics)?
+	3	2 call:teaches(yannis,physics)?
+	3	2 fail:teaches(yannis,physics)?   
+	2	2 redo:course(physics)?   
+	2	2 exit:course(chemistry)?
+	4	2 call:teaches(yannis,chemistry)?
+	4	2 fail:teaches(yannis,chemistry)?
+	2	2 redo:course(chemistry)? backtracking 
+	2	2 exit:course(geometry)?
+	5	2 call:teaches(yannis,geometry)?
+	5	2 exit:teaches(yannis,geometry)?
+	1	1 exit:likes(yannis,geometry)?
+X=geometry? ;   zhtame allh timh na mas dwsei 
+	1	1 redo:likes(yannis,geometry)?
+	5	2 redo:teaches(yannis,geometry)?   
+	5	2 fail:teaches(yannis,geometry)? 
+	2	2 redo:course(geometry)?  backtracking 
+	2	2 exit:course(algebra)?
+	6	2 call:teaches(yannis,algebra)?
+	6	2 exit:teaches(yannis,algebra)?
+	1	1 exit:likes(yannis,algebra)?
+X=algebra? ;
+	1	1 redo:likes(yannis,algebra)?
+	6	2 redo:teaches(yannis,algebra)?
+	6	2 fail:teaches(yannis,algebra)?
+	2	2 redo:course(algebra)? backtracking
+	2	2 exit:course(logic)?
+	7	2 call:teaches(yannis,logic)?
+	7	2 exit:teaches(yannis,logic)?
+	1	1 exit:likes(yannis,logic)?
+X=logic? ;
+no
