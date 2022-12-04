@@ -1,0 +1,22 @@
+--------------------------------------
+progonos(yannis,nikos).
+   10   10  call:progonos(yannis, nikos) ?
+   11   11  call:gonios(yannis, nikos) ?
+   11   11  fail:gonios(yannis, nikos) ?
+   10   10  redo:progonos(yannis, nikos) ? 
+   11   11  call:gonios(yannis, _23442) ?
+   11   11  exit:gonios(yannis, kostas) ?
+   11   11  call:progonos(kostas, nikos) ?
+   12   12  call:gonios(kostas, nikos) ?
+   12   12  fail:gonios(kostas, nikos) ?
+   11   11  redo:progonos(kostas, nikos) ?
+   12   12  call:gonios(kostas, _27968) ?
+   12   12  exit:gonios(kostas, manos) ?
+   12   12  call:progonos(manos, nikos) ?
+   13   13  call:gonios(manos, nikos) ?
+   13   13  exit:gonios(manos, nikos) ?
+   12   12  exit:progonos(manos, nikos) ?
+   11   11  exit:progonos(kostas, nikos) ?
+   10   10  exit:progonos(yannis, nikos) ?
+yes
+--------------------------------------
