@@ -2,12 +2,12 @@
 initial_state([a_on_c, c_on_t, b_on_t]).
 final_state([a_on_b, b_on_c, c_on_t]).
 
+
 % Υλοποιούμε τον κανόνα breadthFirstSearch/2
-breadthFirstSearch(InitialState, FinalState) :-
+breadthFirstSearch(Path) :-
     initial_state(InitialState),
     final_state(FinalState),
-    bfs([[InitialState, []]], [], Solution),
-    print_solution(Solution).
+    bfs([[InitialState]], [], Path).
 
 % Κανόνες για τη διαχείριση των λιστών L1 και L2
 bfs([[State, Path]|_], _, Solution) :-
