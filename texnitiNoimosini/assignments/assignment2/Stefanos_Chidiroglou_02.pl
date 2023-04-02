@@ -1,17 +1,17 @@
-move(s1,s2).
-move(s1,s3).
-move(s1,s4).
-move(s2,s5).
-move(s2,s6).
-move(s2,s7).
-move(s3,s8).
-move(s4,s9).
-move(s4,s10).
-move(s6,s11).
-move(s6,s12).
-move(s7,s13).
-move(s9,s14).
-move(s9,s15).
+move(s1, s2).
+move(s1, s3).
+move(s1, s4).
+move(s2, s5).
+move(s2, s6).
+move(s2, s7).
+move(s3, s8).
+move(s4, s9).
+move(s4, s10).
+move(s6, s11).
+move(s6, s12).
+move(s7, s13).
+move(s9, s14).
+move(s9, s15).
 goal(s8).
 goal(s12).
 goal(s15).
