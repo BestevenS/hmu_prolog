@@ -1,51 +1,41 @@
 % Ορίζουμε την αρχική κατάσταση και την τελική κατάσταση
-initial_state([a_on_c, c_on_t, b_on_t]).
-final_state([a_on_b, b_on_c, c_on_t]).
+initial_state([on(a, c), on(c, t), on(b, t)]).
+final_state([on(a, b), on(b, c), on(c, t)]).
 
 
 % Υλοποιούμε τον κανόνα breadthFirstSearch/2
-breadthFirstSearch(Path) :-
+breadthFirstSearch(InitialState, FinalState, Path) :-
     initial_state(InitialState),
-    final_state(FinalState),
-    bfs([[InitialState]], [], Path).
+    bfs([[InitialState]], [], FinalState, ReversedPath),
+    reverse(ReversedPath, Path).
 
 % Κανόνες για τη διαχείριση των λιστών L1 και L2
-bfs([[State, Path]|_], _, Solution) :-
-    final_state(State),
-    reverse(Path, Solution).
+bfs([[CurrentState | Path]|_], _, FinalState, Path) :-
+    final_state(FinalState),
+    same_state(CurrentState, FinalState).
 
-bfs([[State, Path]|Tail], Closed, Solution) :-
-    findall(
-		[NextState, [Move|Path]],
-		(move(State, Move, NextState), \+ member(NextState, Closed), \+ member([NextState, _], Tail)),
-		Children
-	),
-	append(Tail, Children, NewTail),
-	bfs(NewTail, [State | Closed], Solution).
+bfs([[CurrentState | Path]|Queue], Closed, FinalState, Solution) :-
+    findall([NewState, CurrentState | Path],
+            (move(CurrentState, _, NewState),
+            \+ member(NewState, Closed),
+            \+ member([NewState | _], Queue)),
+            Children),
+    append(Queue, Children, NewQueue),
+    bfs(NewQueue, [CurrentState | Closed], FinalState, Solution).
+
 
 % Κανόνες για τη μετακίνηση των κουτιών και την εφαρμογή των περιορισμών
 move(State, move(X, Y), NewState) :-
-	select(X_on_Z, State, Remaining1),
-	atom_concat(X, 'on', X_on),
-	atom_concat(X_on, Z, X_on_Z),
-	select(Y_on_t, Remaining1, Remaining2),
-	atom_concat(Y, 'on_t', Y_on_t),
-	Z == Y,
-	\+ (atom_concat(_, 'on', Prefix), 
-	atom_concat(Prefix, X, _)),
-	(
-		Y == t; \+ (atom_concat(_, 'on', YPrefix), 
-		atom_concat(YPrefix, Y, _))
-	),
-	append([X_on_Y], Remaining2, NewState),
-	atom_concat(X_on, Y, X_on_Y).
-	
-% Εκτυπώνει τη λύση
-print_solution([]).
-print_solution([Move | Rest]) :-
-	writeln(Move),
-	print_solution(Rest).
-	
+    select(on(X, Z), State, Rest),
+    Z \== t,
+    select(on(Y, _), Rest, NewRest),
+    (Y == t; \+ (select(on(_, Y), NewRest, _))),
+    NewState = [on(X, Y), on(Y, Z) | NewRest].
+
+same_state(State1, State2) :-
+	sort(State1, SortedState1),
+	sort(State2, SortedState2),
+	SortedState1 == SortedState2.
+
 % Στόχος
-% breadthFirstSearch(InitialState, FinalState).
-			
+% breadthFirstSearch(InitialState, FinalState, Path).
