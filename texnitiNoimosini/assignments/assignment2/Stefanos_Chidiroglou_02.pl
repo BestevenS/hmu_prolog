@@ -1,7 +1,8 @@
-initialState([on(a, c), on(c, t), on(b, t)]).
-finalState([on(a, b), on(b, c), on(c, t)]).
+% Αρχική κατάσταση και τελική κατάσταση
+InitialState ([on(a, c), on(c, t), on(b, t)]).
+FinalState ([on(a, b), on(b, c), on(c, t)]).
 
-% Βοηθητικές συναρτήσεις για την χειρισμό των ουρών
+% Υλοποίηση ουράς
 empty_queue([]).
 
 member_queue(X, Q):- 
@@ -15,46 +16,52 @@ enqueue(X, [], [X]).
 enqueue(X, [H|T], [H|T1]):-
     enqueue(X, T, T1).
 
-% Βοηθητικές συναρτήσεις για την κατασταση
-is_clear(X, State) :-
-    \+ member(on(_, X), State).
-
-legal_move(on(X, Y), State) :-
-    member(X, [a, b, c]),
-    member(Y, [a, b, c, t]),
+% Έλεγχος νομιμότητας κίνησης
+legal_move(State, move(X, Y)) :-
     X \== Y,
-    is_clear(X, State),
-    (Y == t; is_clear(Y, State)).
+    member(on(X, Z), State), Z \== Y,
+    \+ (member(on(_, X), State)),
+    (Y == t; \+ (member(on(_, Y), State))).
 
-% Υλοποίηση του αλγορίθμου breadth-first search
+% Εφαρμογή κίνησης
+apply_move(State, move(X, Y), NewState) :-
+    legal_move(State, move(X, Y)),
+    select(on(X, _), State, TempState),
+    NewState = [on(X, Y) | TempState].
+
+% Αναζήτηση πλάτους-πρώτα
 breadthFirstSearch(InitialState, FinalState) :-
-    initialState(InitialState),
-    finalState(FinalState),
     empty_queue(EmptyQueue),
-    enqueue([InitialState, []], EmptyQueue, InitQueue),
-    bfs(InitQueue, FinalState, Path),
-    writeln(Path).
+    enqueue(node(InitialState, []), EmptyQueue, StartQueue),
+    breadthFirstSearchHelper(StartQueue, [], FinalState).
 
-bfs(Queue, FinalState, Path) :-
-    get_elem_queue([State, Moves], Queue),
-    (State == FinalState ->
-        reverse(Moves, Path)
+% Βοηθητική συνάρτηση για την αναζήτηση πλάτους-πρώτα
+breadthFirstSearchHelper(Queue, _, _) :-
+    empty_queue(Queue),
+    write("No solution found."), nl, !, fail.
+
+breadthFirstSearchHelper(Queue, ClosedSet, FinalState) :-
+    get_elem_queue(node(State, Path), Queue),
+    ( isFinalState(State, FinalState) ->
+        reverse(Path, Moves),
+        write("Moves:"), nl,
+        write(Moves), nl,
+        write("Final State:"), nl,
+        write(State), nl
     ;
-        findall([NextState, [Move|Moves]],
-                (legal_move(Move, State),
-                 apply_move(Move, State, NextState),
-                 \+ member_queue(NextState, Queue)),
-                NewStates),
-        dequeue(_, Queue, Dequeued),
-        enqueue_all(NewStates, Dequeued, NewQueue),
-        bfs(NewQueue, FinalState, Path)
+        findall(
+            node(NewState, [Move|Path]),
+            (apply_move(State, Move, NewState), \+ member_queue(node(NewState, _), ClosedSet)),
+            Children
+        ),
+        dequeue(_, Queue, TempQueue),
+        append(TempQueue, Children, NewQueue),
+        enqueue(node(State, Path), ClosedSet, NewClosedSet),
+        breadthFirstSearchHelper(NewQueue, NewClosedSet, FinalState)
     ).
 
-apply_move(on(X, Y), State, NextState) :-
-    select(on(X, _), State, State1),
-    NextState = [on(X, Y) | State1].
+% Έλεγχος για τελική κατάσταση
+isFinalState(State, FinalState) :-
+    subset(FinalState, State).
 
-enqueue_all([], Queue, Queue).
-enqueue_all([H|T], Queue, NewQueue) :-
-    enqueue(H, Queue, TempQueue),
-    enqueue_all(T, TempQueue, NewQueue).
+% breadthFirstSearch(InitialState, FinalState).
