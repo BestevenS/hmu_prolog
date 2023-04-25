@@ -3,12 +3,15 @@
 s --> np, vp.
 np --> ousiastiko(Koino, Fulo, Iso_aniso); katal(Katal).
 vp --> ousiastiko(Koino, Fulo, Iso_aniso); ousiastiko(Koino, Fulo, Iso_aniso), np.
-% gia na epistrepsw ton kwdiko katalixeis na ta spasw se duo katigorimata ta arsenika
+
 ousiastiko(koino, arseniko, isoSulavo,
-    (
-        [[ναύτ, ναύτ],[ναύτ, ναυτ, ναύτ]], [παροξύτονη,παροξύτονη], [ης,ες], ousArs01);
-        (koino, arseniko, isoSulavo, [[νικητ,νικητ],[νικητ,νικητ,νικητ]], [οξύτονη, οξύτονη], [ής,ές], ousArs02)
-    ).
+    [[ναύτ, ναύτ],[ναύτ, ναυτ, ναύτ]],
+    [παροξύτονη,παροξύτονη], [ης,ες], ousArs01).
+
+ousiastiko(koino, arseniko, isoSulavo, 
+    [[νικητ,νικητ],[νικητ,νικητ,νικητ]],
+    [οξύτονη, οξύτονη], [ής,ές], ousArs02).
+
 ousiastiko(koino, oudetero, anisoSulavo,
     [[κύμα, κύματ], [κύματ, κυμάτ, κύματ]],
     [παροξύτονη,παροξύτονη], [α,α],
