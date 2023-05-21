@@ -39,3 +39,35 @@ solve(Goal) :-
     \+ predicate_property(Goal, built_in), 
     clause2(Goal, Body), 
     solve(Body).
+
+run_program :-
+    write('Παρακαλώ επιλέξτε την επιθυμητή ενέργεια:'), nl,
+    write('1. Εκτέλεση monopati(a, f, Path)'), nl,
+    write('2. Εκτέλεση monopati(a, Y, Path)'), nl,
+    write('3. Εκτέλεση monopati(b, f, Path)'), nl,
+    write('4. Εκτέλεση monopati(b, Y, Path)'), nl,
+    write('5. Έξοδος από το πρόγραμμα'), nl,
+    read(Input),
+    perform_action(Input).
+    
+    perform_action(1) :-
+        solve(monopati(a, f, Path)),
+        write(Path), nl,
+        run_program.
+    perform_action(2) :-
+        solve(monopati(a, Y, Path)),
+        write(Path), nl,
+        run_program.
+    perform_action(3) :-
+        solve(monopati(b, f, Path)),
+        write(Path), nl,
+        run_program.
+    perform_action(4) :-
+        solve(monopati(b, Y, Path)),
+        write(Path), nl,
+        run_program.
+    perform_action(5).
+    perform_action(_) :-
+        write('Λανθασμένη επιλογή, παρακαλώ δοκιμάστε ξανά'), nl,
+        run_program.
+    
